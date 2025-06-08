@@ -95,5 +95,12 @@ class OrderController extends Controller
         return 'LD' . $date . $newNumber;
     }
 
+    public function destroy(Pesanan $order){
+
+    $order->delete(); // hapus data
+
+    return redirect()->route('customer.orders.index')
+                     ->with('success', 'Pesanan berhasil dihapus.');
+    }
     
 }

@@ -42,6 +42,11 @@
                 <td>
                     <a href="{{ route('customer.orders.show', $order) }}" class="btn btn-primary btn-sm">Detail</a>
                     <a href="{{ route('customer.pembayaran.create', $order->id) }}" class="btn btn-primary btn-sm ">Bayar Sekarang</a>
+                    <form action="{{ route('customer.orders.destroy', $order->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus layanan ini?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger btn-sm">Hapus</button>
+                                </form>
 
                 </td>
             </tr>

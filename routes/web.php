@@ -68,6 +68,9 @@ use App\Http\Controllers\Customer\ProfileController as CustomerProfileController
      Route::get('/orders/create', [CustomerOrderController::class, 'create'])->name('orders.create');
      Route::post('/orders', [CustomerOrderController::class, 'store'])->name('orders.store');
      Route::get('/orders/{order}', [CustomerOrderController::class, 'show'])->name('orders.show');
+    Route::delete('/customer/orders/{order}', [CustomerOrderController::class, 'destroy'])->name('orders.destroy');
+
+
 
      // Layanan
      Route::get('/layanan', [CustomerLayananController::class, 'index'])->name('layanan.index');
