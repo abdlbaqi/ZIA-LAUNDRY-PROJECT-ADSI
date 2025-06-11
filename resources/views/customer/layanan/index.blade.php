@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container py-5">
-    <h2 class="mb-4 text-center fw-bold">Jenis Layanan Kami</h2>
+    <h2 class="mb-4 text-center fw-bold">Jenis Layanan Kamii</h2>
 
     <div class="row g-4">
         @foreach($layanans as $layanan)
