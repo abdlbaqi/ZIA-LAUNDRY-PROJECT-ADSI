@@ -23,7 +23,11 @@ class Pesanan extends Model
         return $this->belongsTo(Layanan::class);
     }
     
-    
+public function pembayaran()
+{
+    return $this->hasOne(Pembayaran::class, 'pesanan_id');
+}
+
     
     
 

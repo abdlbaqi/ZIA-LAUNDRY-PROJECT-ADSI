@@ -104,11 +104,11 @@
                             <td>{{ $pesanan->tanggal_selesai ? \Carbon\Carbon::parse($pesanan->tanggal_selesai)->format('d-m-Y') : '-' }}</td>
                             <td>
                                 <a href="{{ route('admin.orders.show', $pesanan->id) }}" class="btn btn-sm btn-info">Detail</a>
-                                <form action="{{ route('admin.orders.destroy', $pesanan->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus pesanan ini?')">
+                                {{-- <form action="{{ route('admin.orders.destroy', $pesanan->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus pesanan ini?')">
     @csrf
     @method('DELETE')
     <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
-</form>
+</form> --}}
 
                             </td>
                         </tr>

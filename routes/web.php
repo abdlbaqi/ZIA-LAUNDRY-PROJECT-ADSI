@@ -75,13 +75,25 @@ use App\Http\Controllers\Customer\ProfileController as CustomerProfileController
      // Layanan
      Route::get('/layanan', [CustomerLayananController::class, 'index'])->name('layanan.index');
 
-     // Pembayaran (sesuai total pesanan)
-     // Form create pembayaran untuk pesanan tertentu
-     Route::get('/pembayaran/{pesanan}', [CustomerPembayaranController::class, 'create'])->name('pembayaran.create');
-     // Submit data pembayaran
-     Route::post('/pembayaran', [CustomerPembayaranController::class, 'store'])->name('pembayaran.store');
+    //  // Pembayaran (sesuai total pesanan)
+    //  // Form create pembayaran untuk pesanan tertentu
+    //  Route::get('/pembayaran/{pesanan}', [CustomerPembayaranController::class, 'create'])->name('pembayaran.create');
+    //  // Submit data pembayaran
+    //  Route::post('/pembayaran', [CustomerPembayaranController::class, 'store'])->name('pembayaran.store');
 
      // Profile
      Route::get('/profile/edit', [CustomerProfileController::class, 'edit'])->name('profile.edit');
      Route::patch('/profile', [CustomerProfileController::class, 'update'])->name('profile.update');
+
+   
+    Route::get('pembayaran/{id}', [CustomerPembayaranController::class, 'show'])->name('pembayaran.show');
+    Route::post('pembayaran', [CustomerPembayaranController::class, 'store'])->name('pembayaran.store');
+
+    Route::post('bayar/{orderId}', [CustomerPembayaranController::class, 'bayar'])->name('bayar');
+
+    Route::get('/pembayaran/finish', [CustomerPembayaranController::class, 'finish'])->name('pembayaran.finish');
+Route::get('/pembayaran/unfinish', [CustomerPembayaranController::class, 'unfinish'])->name('pembayaran.unfinish');
+Route::get('/pembayaran/error', [CustomerPembayaranController::class, 'error'])->name('pembayaran.error');
+
+
  });

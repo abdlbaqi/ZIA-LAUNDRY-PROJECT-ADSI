@@ -40,13 +40,16 @@
                 <td>{{ ucfirst($order->status) }}</td>
                 <td>{{ \Carbon\Carbon::parse($order->tanggal_ambil)->format('d M Y') }}</td>
                 <td>
-                    <a href="{{ route('customer.orders.show', $order) }}" class="btn btn-primary btn-sm">Detail</a>
-                    <a href="{{ route('customer.pembayaran.create', $order->id) }}" class="btn btn-primary btn-sm ">Bayar Sekarang</a>
-                    <form action="{{ route('customer.orders.destroy', $order->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus layanan ini?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger btn-sm">Hapus</button>
-                                </form>
+                    <a href="{{ route('customer.orders.show', $order) }}" class="btn btn-primary btn-sm mb-1">Detail</a>
+
+                    @if ($order->pembayaran && $order->pembayaran->snap_token)
+    <a href="{{ route('customer.pembayaran.show', $order->id) }}" class="btn btn-success">Bayar</a>
+@else
+    <form action="{{ route('customer.bayar', $order->id) }}" method="POST">
+        @csrf
+        <button type="submit" class="btn btn-warning">Buat Token Bayar</button>
+    </form>
+@endif
 
                 </td>
             </tr>
@@ -61,4 +64,28 @@
 
     <a href="{{ route('customer.orders.create') }}" class="btn btn-success mt-3">Buat Pesanan Baru</a>
 </div>
+@endsection
+
+@section('scripts')
+<script src="https://app.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}"></script>
+<script>
+    function payWithMidtrans(snapToken) {
+        snap.pay(snapToken, {
+            onSuccess: function(result) {
+                alert("Pembayaran berhasil!");
+                location.reload();
+            },
+            onPending: function(result) {
+                alert("Menunggu pembayaran selesai.");
+                location.reload();
+            },
+            onError: function(result) {
+                alert("Pembayaran gagal: " + result.status_message);
+            },
+            onClose: function() {
+                alert("Pembayaran dibatalkan.");
+            }
+        });
+    }
+</script>
 @endsection
