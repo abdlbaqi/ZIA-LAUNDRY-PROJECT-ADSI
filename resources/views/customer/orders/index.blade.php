@@ -32,7 +32,10 @@
         </thead>
         <tbody>
             @foreach ($orders as $order)
-            <tr>
+           
+
+
+             <tr>
                 <td>{{ $order->nomor_pesanan }}</td>
                 <td>{{ $order->layanan->nama_layanan }}</td>
                 <td>{{ $order->berat_kg }}</td>

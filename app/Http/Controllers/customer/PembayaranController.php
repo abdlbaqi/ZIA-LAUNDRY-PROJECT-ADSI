@@ -32,7 +32,7 @@ class PembayaranController extends Controller
             ],
 
                 'callbacks' => [
-            'finish' => route('customer.pembayaran.finish'),
+            'finish' => route('customer.pembayaran.finishh'),
             'unfinish' => route('customer.pembayaran.unfinish'),
             'error' => route('customer.pembayaran.error'),
                 ],
@@ -60,7 +60,7 @@ class PembayaranController extends Controller
     }
     public function finish(Request $request)
 {
-    return view('customer.pembayaran.finish');
+    return view('customer.pembayaran.finishh');
 }
 
 
@@ -72,7 +72,7 @@ public function show($id)
 
     $pembayaran = Pembayaran::where('pesanan_id', $pesanan->id)->firstOrFail();
 
-    return view('customer.pembayaran.show', compact('pembayaran'));
+    return view('customer.pembayaran.detail', compact('pembayaran'));
 }
 
 
